@@ -28,7 +28,7 @@ const AddQuestion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${apiUrl}/questions`, formData);
+            await axios.post(`${apiUrl}/questions`, formData);
             setMessage({ text: 'Question added successfully!', isError: false });
             // Reset form
             setFormData({

@@ -15,6 +15,6 @@ async function updateScoreInRedis(quizId, userId, score) {
 }
 
 async function getLeaderboardFromRedis(quizId) {
-    return await redisClient.zRevRangeWithScores(`leaderboard:${quizId}`, 0, -1);
+    return redisClient.zRangeWithScores(`leaderboard:${quizId}`, 0, -1);
 }
-export {startRedis,redisClient}
+export {startRedis,redisClient,updateScoreInRedis,getLeaderboardFromRedis}

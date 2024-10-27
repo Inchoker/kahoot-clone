@@ -1,5 +1,7 @@
 import {Server} from "socket.io";
 import {server} from "../server.js";
+import Question from "../Models/Questions.js";
+import {getLeaderboardFromRedis, updateScoreInRedis} from "./Redis/RedisClient.js";
 
 const startSocketIo = () => {
     io.on("connection", (socket) => {
@@ -11,9 +13,8 @@ const startSocketIo = () => {
             console.log(`User ${socket.id} joined quiz ${quizId}`);
         });
 
-        socket.on("submitAnswer", async (data) => {
-            const {quizId, userId, answer} = data;
-            await processAnswer(io, quizId, userId, answer);
+        socket.on("answer", async (data,userId) => {
+            await processAnswer(io, data,userId);
         });
         socket.on('leaveQuiz', (quiz) => {
             socket.leave(quiz);
@@ -34,20 +35,20 @@ const io = new Server(server, {
     },
 });
 
-async function processAnswer(io, quizId, userId, answer) {
+async function processAnswer(io, data,userId) {
     // Fetch the current question for this quiz
-    const question = await getCurrentQuestion(quizId);
+    const question = await getCurrentQuestion();
 
-    // Check if the answer is correct and calculate score
-    const isCorrect = answer === question.correctAnswer;
+    const isCorrect = data === question.correctAnswer;
     const scoreIncrement = isCorrect ? 10 : 0;
 
-    // Update score in Redis
-    await updateScoreInRedis(quizId, userId, scoreIncrement);
+    await updateScoreInRedis('quiz', userId, scoreIncrement);
 
-    // Emit the updated leaderboard to all participants in the quiz
-    const leaderboard = await getLeaderboardFromRedis(quizId);
-    io.to(quizId).emit("leaderboardUpdate", leaderboard);
+    const leaderboard = await getLeaderboardFromRedis('quiz');
+    io.to('quiz').emit("leaderboardUpdate", leaderboard);
 }
-
+async function getCurrentQuestion() {
+    const result = (await Question.find().sort({ _id: -1 }).limit(1).exec())[0]._doc;
+    return result;
+}
 export {io,startSocketIo}
