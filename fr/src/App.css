@@ -1,0 +1,150 @@
+.App {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+div {
+  margin: 1rem 0;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+/* Global styling for better readability */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Container styling */
+.add-question {
+  background: #fff;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+.add-question h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #444;
+  text-align: center;
+}
+
+/* Form layout */
+form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+/* Label styling */
+label {
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+  color: #555;
+}
+
+/* Input styling */
+input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007BFF;
+}
+
+/* Options input styling */
+.options-container {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* Button styling */
+button[type="submit"] {
+  background-color: #007BFF;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Message styling */
+.message {
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+/* App.css */
+.navbar {
+  background-color: #ffffff;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.active-link {
+  background-color: #000000;
+  color: #ffffff;
+}
