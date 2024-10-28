@@ -31,7 +31,7 @@ const startSocketIo = () => {
 
 const io = new Server(server, {
     cors: {
-        origin: "*", // Replace with your frontend URL in production
+        origin: "*", 
     },
 });
 
