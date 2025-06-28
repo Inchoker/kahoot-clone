@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* You can customize your global styles here */
 body {
   margin: 0;

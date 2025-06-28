@@ -1,12 +1,10 @@
 import express from 'express';
 import Question from './Models/Questions.js';
-import {io} from "./PubSub/SocketIo.js";
-
+import { io } from './PubSub/SocketIo.js';
 const router = express.Router();
-
+// Create a new question
 router.post('/questions', async (req, res) => {
     const { question, options, correctAnswer, category, difficulty } = req.body;
-
     const newQuestion = new Question({
         question,
         options,
@@ -14,40 +12,35 @@ router.post('/questions', async (req, res) => {
         category,
         difficulty,
     });
-
     try {
         await newQuestion.save();
         res.status(201).json(newQuestion);
-        io.to('quiz').emit('question',newQuestion)
-    } catch (err) {
+        io.to('quiz').emit('question', newQuestion);
+    }
+    catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
-
 // Fetch all questions
-router.get('/questions', async (req, res) => {
+router.get('/questions', async (_req, res) => {
     try {
         const questions = await Question.find();
         res.status(200).json(questions);
-    } catch (err) {
+    }
+    catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
-
-// Submit answers
+// Submit answers and return score
 router.post('/submit', async (req, res) => {
-    const { answers } = req.body; // An array of answer objects { questionId, userAnswer }
-
+    const { answers } = req.body;
     let score = 0;
-
     for (const answer of answers) {
         const question = await Question.findById(answer.questionId);
         if (question && question.correctAnswer === answer.userAnswer) {
             score++;
         }
     }
-
     res.status(200).json({ score });
 });
-
 export default router;

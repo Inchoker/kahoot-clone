@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 
-const AddQuestion = () => {
-    const [formData, setFormData] = useState({
+interface FormData {
+    question: string;
+    options: string[];
+    correctAnswer: string;
+    category: string;
+    difficulty: string;
+}
+
+interface Message {
+    text: string;
+    isError: boolean;
+}
+
+const AddQuestion: React.FC = () => {
+    const [formData, setFormData] = useState<FormData>({
         question: '',
-        options: ['', '', '', ''], // Four options
+        options: ['', '', '', ''],
         correctAnswer: '',
         category: '',
         difficulty: '',
     });
-    const [message, setMessage] = useState({ text: '', isError: false });
+
+    const [message, setMessage] = useState<Message>({ text: '', isError: false });
     const apiUrl = process.env.REACT_APP_API_URL;
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleOptionChange = (index, value) => {
+    const handleOptionChange = (index: number, value: string) => {
         setFormData((prevData) => {
             const updatedOptions = [...prevData.options];
             updatedOptions[index] = value;
@@ -25,11 +39,12 @@ const AddQuestion = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             await axios.post(`${apiUrl}/questions`, formData);
             setMessage({ text: 'Question added successfully!', isError: false });
+
             // Reset form
             setFormData({
                 question: '',
