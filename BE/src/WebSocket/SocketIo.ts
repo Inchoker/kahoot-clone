@@ -1,7 +1,7 @@
 import { Server, Socket } from "socket.io";
 import { server } from "../server.js"
 import Question from "../Models/Questions.js";
-import { getLeaderboardFromRedis, updateScoreInRedis } from "./Redis/RedisClient.js";
+import { getLeaderboardFromRedis, updateScoreInRedis } from "../Redis/RedisClient.js";
 
 interface AnswerPayload {
   answer: string;

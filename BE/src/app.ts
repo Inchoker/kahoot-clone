@@ -1,7 +1,7 @@
 // src/index.ts or main.ts
 
-import { startSocketIo } from "./PubSub/SocketIo.js";
-import { startRedis } from "./PubSub/Redis/RedisClient.js"
+import { startSocketIo } from "./WebSocket/SocketIo.js";
+import { startRedis } from "./Redis/RedisClient.js"
 import { startMongodb } from "./Database/Mongodb/Mongodb.js";
 import { startServer } from "./server.js";
 

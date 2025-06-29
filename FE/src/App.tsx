@@ -1,7 +1,7 @@
 import React, { createContext, useState, Dispatch, SetStateAction } from 'react';
 import './App.css';
-import EnglishTest from './Components/EnglishTest';
-import AddQuestion from "./Components/AddQuestions";
+import EnglishTest from './Pages/EnglishTest';
+import AddQuestion from "./Pages/AddQuestions";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 

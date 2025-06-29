@@ -1,6 +1,6 @@
 import express from 'express';
 import Question from './Models/Questions.js';
-import { io } from './PubSub/SocketIo.js';
+import { io } from './WebSocket/SocketIo.js';
 const router = express.Router();
 // Create a new question
 router.post('/questions', async (req, res) => {

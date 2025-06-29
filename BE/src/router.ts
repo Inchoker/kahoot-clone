@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import Question from './Models/Questions.js';
-import { io } from './PubSub/SocketIo.js';
+import { io } from './WebSocket/SocketIo.js';
 
 const router = express.Router();
 
