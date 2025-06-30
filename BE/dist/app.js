@@ -1,15 +1,17 @@
+"use strict";
 // src/index.ts or main.ts
-import { startSocketIo } from "./WebSocket/SocketIo.js";
-import { startRedis } from "./Redis/RedisClient.js";
-import { startMongodb } from "./Database/Mongodb/Mongodb.js";
-import { startServer } from "./server.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+const socket_io_js_1 = require("./web-socket/socket-io.js");
+const redis_client_js_1 = require("./redis/redis-client.js");
+const Mongodb_js_1 = require("./database/Mongodb/Mongodb.js");
+const server_js_1 = require("./server.js");
 const bootstrap = async () => {
     try {
         await Promise.all([
-            startServer(),
-            startSocketIo(),
-            startRedis(),
-            startMongodb(),
+            (0, server_js_1.startServer)(),
+            (0, socket_io_js_1.startSocketIo)(),
+            (0, redis_client_js_1.startRedis)(),
+            (0, Mongodb_js_1.startMongodb)(),
         ]);
         console.log("Server fully started!");
     }

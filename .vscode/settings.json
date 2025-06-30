@@ -1,0 +1,5 @@
+{
+  "jest.jestCommandLine": "npx jest",
+  "jest.rootPath": "BE",
+  "jest.multiRootWorkspaceEnabled": true
+}
