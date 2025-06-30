@@ -14,7 +14,7 @@ interface Message {
     isError: boolean;
 }
 
-const AddQuestion: React.FC = () => {
+const AddQuestions: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
         question: '',
         options: ['', '', '', ''],
@@ -155,4 +155,4 @@ const AddQuestion: React.FC = () => {
     );
 };
 
-export default AddQuestion;
+export default AddQuestions;

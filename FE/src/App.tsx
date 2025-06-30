@@ -1,7 +1,7 @@
 import React, { createContext, useState, Dispatch, SetStateAction } from 'react';
 import './App.css';
 import EnglishTest from './Pages/EnglishTest';
-import AddQuestion from "./Pages/AddQuestions";
+import AddQuestions from "./Pages/AddQuestions";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -31,7 +31,7 @@ function App() {
             </nav>
             <Routes>
               <Route path="/" element={<EnglishTest />} />
-              <Route path="/add" element={<AddQuestion />} />
+              <Route path="/add" element={<AddQuestions />} />
             </Routes>
           </Router>
         </PlayerContext.Provider>
